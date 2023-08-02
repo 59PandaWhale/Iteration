@@ -1,0 +1,1 @@
+/Applications/Postgres.app/Contents/Versions/15/bin/postgres "-D" "/Users/kodym/coding_things/Projects/Iteration-Project/iteration/db" "-p" "5432"
