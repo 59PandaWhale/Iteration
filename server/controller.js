@@ -34,11 +34,13 @@ const controller = {
 
   submitReview: async (req, res, next) => {
     try {
-      const { staffAttitude, service, review, recommendation, bathroomVibe } = req.body;
-
-      const reviewSubmission = `INSERT INTO review (staff_attitude, service, review, recommendation, bathroom_vibe)
-      VALUES ('${staffAttitude}', '${service}', '${review}', '${recommendation}', '${bathroomVibe}')
+      const { staffAtt, service, review, recommend, bathroom } = req.body;
+      console.log(req.body)
+      const reviewSubmission = `INSERT INTO public.reviews (staff_attitude, service, review, recommendation, bathroom_vibe)
+      VALUES ('${staffAtt}', '${service}', '${review}', '${recommend}', '${bathroom}')
       RETURNING *`;
+
+      console.log(reviewSubmission)
       const data = await db.query(reviewSubmission);
       res.locals.addedReview = data.rows[0];
       return next();
@@ -116,3 +118,4 @@ module.exports = controller;
 // };
 
 // module.exports = controller;
+
