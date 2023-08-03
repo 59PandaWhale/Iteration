@@ -11,16 +11,16 @@ const RestaurantDisplay = () => {
   const dispatch = useDispatch();
   // do a get request to all of our restaurants
 
-  const fetchRestaurants = async () => {
-    try {
-      const backendUrl = 'http://localhost:3000/restaurants';
-      const jsonData = await fetch(backendUrl);
-      const restaurantData = await jsonData.json();
-      dispatch(updateRest(restaurantData));
-    } catch (err) {
-      console.log(`There was an error fetching restaurant data: ${err}`);
-    }
-  };
+  // const fetchRestaurants = async () => {
+  //   try {
+  //     const backendUrl = 'http://localhost:3000/restaurants';
+  //     const jsonData = await fetch(backendUrl);
+  //     const restaurantData = await jsonData.json();
+  //     dispatch(updateRest(restaurantData));
+  //   } catch (err) {
+  //     console.log(`There was an error fetching restaurant data: ${err}`);
+  //   }
+  // };
   // grab that data --> array of objects
 
   // invoke updateRest to update our restaurant state
@@ -30,9 +30,14 @@ const RestaurantDisplay = () => {
   const displayArray = [];
 
   //iterate through the array of Restaurant objects
-  restaurant.forEach((el, index) => {
-    displayArray.push(<RestaurantCard key={index} info={el} />);
-  });
+
+  // useEffect(() => {
+  //   displayArray.remo
+  //   frestaurant.forEach((el, index) => {
+  //     displayArray.push(<RestaurantCard key={index} info={el} />);
+  //   });
+  // }, [])
+  
 
 
   return <div className='resDisplay'>{displayArray}</div>;

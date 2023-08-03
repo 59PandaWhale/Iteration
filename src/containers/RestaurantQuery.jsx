@@ -78,7 +78,9 @@ const handleSubmit = async (event) => {
        })
       console.log(restaurants)
       dispatch(resetQuery());
+      dispatch(updateRest(restaurants))
       formRef.current.reset();
+
       // setRestaurants(results);
     }else{
       console.log('error in google api')
