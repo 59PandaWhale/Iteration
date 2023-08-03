@@ -7,21 +7,23 @@ require('dotenv').config();
 
 const userController = {
   authenticateSignup: (req, res, next) => {
+    console.log(req, "REQ")
     const user = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      pw: hashedPassword
+      pw: req.body.pw
     };
 
     const userSignupQuery = `INSERT INTO user_information (firstName, lastName, email, pw)
-    VALUES ('${firstName}', '${lastName}', '${email}', '${pw}')`;
+    VALUES ('${user.firstName}', '${user.lastName}', '${user.email}', '${user.pw}')`;
 
-    db.query(userSignupQuery);
+    db.query(userSignupQuery)
       .then(() => {
+        console.log(created)
         res.locals.successLoginData = {
           isSuccessful: true,
-          email: user.email,
+          email: email,
         };
         return next();
       })
@@ -29,7 +31,7 @@ const userController = {
         console.error(err, 'err with adding new user to db');
 
         return next({
-          log: `userController.authenticatesSignup failed to create new yser, ${err.message}.`,
+          log: `userController.authenticatesSignup failed to create new user, ${err.message}.`,
           status: 500,
           message: { err: 'Failed to create new user in db.' },
         });

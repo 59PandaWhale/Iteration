@@ -21,7 +21,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+const SignUp = () => {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -34,6 +35,7 @@ export default function SignUp() {
     // const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
     // this.password = await bcrypt.hash(this.password, salt);
     // return next();
+
     const body = {
         firstName: firstName,
         lastName: lastName,
@@ -47,7 +49,7 @@ export default function SignUp() {
       };
 
     fetch('/signup', requestOptions)
-      .then(response => response.json())
+      .then((response) => response)
       .then((data) => {
         // If successful, store session, username and go to home
         if (data.err) alert('Username already exists.');
@@ -188,4 +190,4 @@ export default function SignUp() {
 //   );
 // };
 
-// export default Signup;
+export default SignUp;
