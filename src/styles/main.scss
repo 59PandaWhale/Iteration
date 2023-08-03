@@ -38,6 +38,37 @@ body {
   width: 75%;
 }
 
+#mainContainer {
+  width: 100%;
+  // border: dotted grey;
+  display: flex
+
+}
+
+.mainDiv {
+  width: 100%
+}
+
+.rightDiv {
+ width: 100em; 
+ border: dotted black;
+ background-color: whitesmoke;
+ border-radius: 5%;
+}
+
+.restaurantBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurantInfo {
+  border: dotted grey;
+  border-radius: 10%;
+  width: 27em;
+}
+
 h1 {
   font-size: 4em;
   text-align: center;

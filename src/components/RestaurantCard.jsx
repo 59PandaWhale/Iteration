@@ -4,6 +4,8 @@ import React from 'react';
 const RestaurantCard = ({ info }) => {
   const {name, ambience, cuisine, price_tier, plant_based, location_radius, good_for_groups} = info;
 
+  // turn this card into a button
+
   return (
     <div className='resCard'>
       <h1>{name}</h1>
