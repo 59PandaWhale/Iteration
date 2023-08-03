@@ -1,5 +1,6 @@
 const path = require('path');
-
+const webpack = require('webpack');
+require('dotenv').config();
 /* html-webpack-plugin: simplifies creation of HTML files
 https://webpack.js.org/plugins/html-webpack-plugin/ */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -33,7 +34,7 @@ module.exports = {
     port: 8080,
     proxy: [ //redirects requests to host 3000
       {
-        context: ['/user', '/restaurants'], //more might be needed to be added later
+        context: ['/user'], //more might be needed to be added later
         target: 'http://localhost:3000'
       },
     ],
@@ -81,6 +82,9 @@ module.exports = {
       title: 'untitled',
       filename: 'index.html',
       template: 'src/template.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_KEY': JSON.stringify(process.env.REACT_APP_API_KEY),
     }),
   ],
   resolve: {
