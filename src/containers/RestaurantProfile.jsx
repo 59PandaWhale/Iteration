@@ -1,5 +1,7 @@
 import React from 'react'
 import RestaurantInfo from '../components/RestaurantInfo';
+import ReviewsDisplay from '../components/ReviewsDisplay';
+import ReviewContainer from './ReviewContainer';
 
 const RestaurantProfile = () => {
   
@@ -38,9 +40,14 @@ const RestaurantProfile = () => {
       {restaurant.name}
       {/* add starts based on rating */}
       <div>
-        <RestaurantInfo restaurant={restaurant}/>
+        <RestaurantInfo restaurant={restaurant} />
       </div>
-      <div>Review Dsiplay</div>
+      <div>
+        <ReviewsDisplay/>
+      </div>
+      <div>
+        <ReviewContainer />
+      </div>
     </div>
   );
 }

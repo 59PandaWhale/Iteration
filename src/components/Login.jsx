@@ -30,42 +30,37 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     const user = {
       email: data.get('email'),
-      password: data.get('password')
-    }
+      password: data.get('password'),
+    };
     //if( data.get('email') || data.get('password') ||))
 
     try {
       const response = await fetch('/login', {
-       method: 'POST',
-       headers: {
-        'Content-Type': 'application/json'
-       },
-       body: JSON.stringify(body)
-      })
-      const data = await response.json()
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json();
       // get res.locals authetintication and useNavigate to approriate url path
-
+      if (data.isSuccessful) navigate('/');
+    } catch (err) {
+      console.log('error logging in: ', err);
     }
-    catch {
-
-    }
-
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
           sx={{
@@ -78,51 +73,60 @@ export default function Login() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component='form'
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
               autoFocus
             />
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
             />
             <Button
-              className = "loginBttn"
-              type="submit"
+              className='loginBttn'
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Login
             </Button>
             <Button
-            className = "loginBttn"
+              className='loginBttn'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign-up
             </Button>
             <Grid item>
-                  <Link href="/signup" variant="body2" sx={{color: 'black', fontWeight: "bold"}}>
-                    {"Sign Up"}
-                  </Link>
+              <Link
+                href='/signup'
+                variant='body2'
+                sx={{ color: 'black', fontWeight: 'bold' }}
+              >
+                {'Sign Up'}
+              </Link>
             </Grid>
           </Box>
         </Box>
