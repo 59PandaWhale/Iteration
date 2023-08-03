@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRest } from '../features/restaurantsSlice';
 import RestaurantCard from '../components/RestaurantCard.jsx';
@@ -11,64 +11,39 @@ const RestaurantDisplay = () => {
   const dispatch = useDispatch();
   // do a get request to all of our restaurants
 
-  const fetchRestaurants = async () => {
-    try {
-      const backendUrl = 'http://localhost:3000/restaurants';
-      const jsonData = await fetch(backendUrl);
-      const restaurantData = await jsonData.json();
-      dispatch(updateRest(restaurantData));
-    } catch (err) {
-      console.log(`There was an error fetching restaurant data: ${err}`);
-    }
-  };
+  // const fetchRestaurants = async () => {
+  //   try {
+  //     const backendUrl = 'http://localhost:3000/restaurants';
+  //     const jsonData = await fetch(backendUrl);
+  //     const restaurantData = await jsonData.json();
+  //     dispatch(updateRest(restaurantData));
+  //   } catch (err) {
+  //     console.log(`There was an error fetching restaurant data: ${err}`);
+  //   }
+  // };
+  // grab that data --> array of objects
 
-  const getRestaurants = (address, radius, minRating, maxPriceLevel, minNumOfRatings) => {
-    // Encode the address to include it as a URL parameter
-    const encodedAddress = encodeURIComponent(address);
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=AIzaSyAQxC9h6Cux5KqQ62OHTAAuAVptA194-bY`)
-    .then(response => {
-      // The latitude and longitude are located in 
-      // response.data.results[0].geometry.location
-      const location = response.data.results[0].geometry.location;
-      console.log(`Latitude: ${location.lat}`);
-      console.log(`Longitude: ${location.lng}`);
+  // invoke updateRest to update our restaurant state
 
-      // Now return the location so it can be used in the next then block
-      return location;
-    })
-    .then(location => {
-      return axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json', {
-        params: {
-          location: `${location.lat},${location.lng}`,  // use the lat/lng from the Geocoding API
-          radius: radius,
-          type: 'restaurant',
-          key: 'AIzaSyAQxC9h6Cux5KqQ62OHTAAuAVptA194-bY'
-        }
-      });
-    })
-    .then(response => {
-      const places = response.data.results;
-      const filteredPlaces = places.filter(place => place.rating >= 4.5 && price_level <= maxPriceLevel && user_ratings_total <= minNumOfRatings); // place min 
-      return Promise.all(filteredPlaces.map(restaurant => {
-        return axios.get('https://maps.googleapis.com/maps/api/place/details/json', {
-          params: {
-            place_id: restaurant.place_id,
-            fields: 'reviews,rating,name,types',
-            key: 'AIzaSyAQxC9h6Cux5KqQ62OHTAAuAVptA194-bY'
-          }
-        }).then(detailsResponse => {
-          restaurant.details = detailsResponse.data.result;
-          return restaurant;
-        });
-      }));
-    })
-    .then(restaurantsWithDetails => {
-      console.log(restaurantsWithDetails);
-    })
-    .catch(error => {
-      console.error(`Could not retrieve data: ${error}`);
-    });
-  }
+  // restaurant
+  //create an array to store all of the different RestaurantCards
+  const displayArray = [];
+
+  //iterate through the array of Restaurant objects
+
+  // useEffect(() => {
+  //   displayArray.remo
+  //   frestaurant.forEach((el, index) => {
+  //     displayArray.push(<RestaurantCard key={index} info={el} />);
+  //   });
+  // }, [])
+  
+
+
+  return <div className='resDisplay'>{displayArray}</div>;
+};
+
+export default RestaurantDisplay;
   //example object: 
   /*
    {
@@ -100,27 +75,15 @@ const RestaurantDisplay = () => {
     }
   },
   */
-  // fetchRestaurants();
-  useEffect(() => {
-    fetchRestaurants();
-  }, [])
 
-  // grab that data --> array of objects
-
-  // invoke updateRest to update our restaurant state
-
-  // restaurant
-  //create an array to store all of the different RestaurantCards
-  const displayArray = [];
-
-  //iterate through the array of Restaurant objects
-  restaurant.forEach((el, index) => {
-    displayArray.push(<RestaurantCard key={index} info={el} />);
-  });
-  //create an instance of Restaurant Card for each object
+  // making the request for a specific restaurant
+   //create an instance of Restaurant Card for each object
   //pass the object down as a prop
 
-  return <div className='resDisplay'>{displayArray}</div>;
-};
+   // const place_id = "ChIJsx3CV9_dJIgRUN03zHb00gw"; // Replace with your place_id
+  // const fields = "name,opening_hours";
+  // const key = "YOUR_API_KEY"; // Replace with your API key
 
-export default RestaurantDisplay;
+  // const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=${fields}&key=${key}`;
+
+  // const response = await axios.get(url);
