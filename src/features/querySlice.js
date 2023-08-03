@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  name: '',
-  ambience: '',
+  street: '',
+  city:'',
+  state:'',
+  minrating: '',
   cuisine: '',
   price_tier: '',
   plant_based: '',
@@ -22,8 +24,12 @@ export const querySlice = createSlice({
       const value = action.payload[1];
       state[attribute] = value;
     },
+    resetQuery: state => {
+      // Reset state to initial state
+      Object.assign(state, initialState); //added by yahya
+    },
   },
 });
 
-export const { updateQuery } = querySlice.actions;
+export const { updateQuery, resetQuery } = querySlice.actions;
 export default querySlice.reducer;

@@ -1,5 +1,6 @@
 const path = require('path');
-
+const webpack = require('webpack');
+require('dotenv').config();
 /* html-webpack-plugin: simplifies creation of HTML files
 https://webpack.js.org/plugins/html-webpack-plugin/ */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -80,6 +81,9 @@ module.exports = {
       title: 'untitled',
       filename: 'index.html',
       template: 'src/template.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_API_KEY': JSON.stringify(process.env.REACT_APP_API_KEY),
     }),
   ],
   resolve: {
