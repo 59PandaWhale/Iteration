@@ -13,9 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // GET route: 'read' queries to restaurants table
-app.get('/restaurants', controller.getRestaurants, (req, res) =>
-  res.status(200).json(res.locals.restaurants)
-);
+// app.get('/restaurants', controller.getRestaurants, (req, res) =>
+//   res.status(200).json(res.locals.restaurants)
+// );
 
 // //TODO: What does this do?
 // app.post('/restaurants', controller.getRestaurants, (req, res) =>
@@ -61,6 +61,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on localhost:${PORT}...`);
 });
 
-module.exports = app.listen(port, () =>
-  console.log(`Listening on port ${port}`)
-);
+// module.exports = app.listen(PORT, () =>
+//   console.log(`Listening on port ${port}`)
+// );
