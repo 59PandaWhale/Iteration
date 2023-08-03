@@ -38,6 +38,7 @@ module.exports = {
         target: 'http://localhost:3000'
       },
     ],
+    
     open: true,
     hot: true,
     compress: true,
