@@ -22,6 +22,8 @@ const RestaurantQuery = () => {
 
 */
 const formRef = useRef();
+
+
 useEffect(() => {
   if (submitClicked) {
     setSubmitClicked(false); // reset the state after fetching
