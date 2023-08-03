@@ -22,7 +22,7 @@ const RestaurantProfile = () => {
 
   return (
     <div className='restaurantBox'>
-      Restaurant Info
+      Restaurant Name here
       {/* add starts based on rating */}
       <div>
         <RestaurantInfo restaurant={restaurant}/>
