@@ -19,10 +19,23 @@ const RestaurantProfile = () => {
     rating: '3.5'
   };
 
+  // Example Object from API
+  // const APIobj = {
+  //   name: result.name,
+  //   address: result.formatted_address,
+  //   isOpen: result.opening_hours ? result.opening_hours.open_now : undefined,
+  //   rating: result.rating,
+  //   priceLevel: result.price_level,
+  //   placeId: result.place_id,
+  //   numberOfratings: results.user_ratings_total
+  //   // Add any other data you might find useful
+  // };
+
+
 
   return (
     <div className='restaurantBox'>
-      Restaurant Name here
+      {restaurant.name}
       {/* add starts based on rating */}
       <div>
         <RestaurantInfo restaurant={restaurant}/>

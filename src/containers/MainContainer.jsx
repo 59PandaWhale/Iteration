@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/main.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReviewContainer from './ReviewContainer.jsx';
 import RestaurantDisplay from './RestaurantDisplay.jsx';
 import RestaurantQuery from './RestaurantQuery.jsx';
@@ -14,26 +14,26 @@ import RestaurantProfile from './RestaurantProfile';
 }
 
 function MainContainer() {
-
   // ONCLICK FUNCTIONALITY
   // if restaurantCard button is clicked, render rightDiv component
-    
+  const isCardButtonClicked = useSelector((state) => state.cardButton.isClicked); // Updated selector
 
-    return (
-        <Container id='mainContainer' disableGutters >
-        <div className='mainDiv'>
-            <h1>(rec(commend), res(taurants), next)</h1>
-            <RestaurantQuery />
-            <RestaurantDisplay />
-            <ReviewContainer />
-        </div>
-        {/* //write a conditional render onclick */}
-        <div className='rightDiv'>
-          <RestaurantProfile/>
-        </div>
-        </Container>
-    );
-  }
+  return (
+    <Container id='mainContainer' disableGutters>
+      <div className='mainDiv'>
+        <h1>(rec(commend), res(taurants), next)</h1>
+        <RestaurantQuery />
+        <RestaurantDisplay />
+        <ReviewContainer />
+      </div>
+      {/* //write a conditional render onclick */}
+      {isCardButtonClicked && <div className='rightDiv'><RestaurantProfile /></div>}
+      {/* <div className='rightDiv'>
+        <RestaurantProfile />
+      </div> */}
+    </Container>
+  );
+}
   
 
 export default MainContainer;

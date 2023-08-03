@@ -51,9 +51,12 @@ body {
 
 .rightDiv {
  width: 100em; 
- border: dotted black;
- background-color: whitesmoke;
- border-radius: 5%;
+ border: solid rgb(141, 141, 141);
+   background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  border: 1rem groove #d996df;
+  padding: 10px;
+ background-color: rgb(233, 232, 232);
+ border-radius: 2%;
 }
 
 .restaurantBox {
