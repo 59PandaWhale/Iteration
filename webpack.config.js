@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // mode – either 'production' or 'development'
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   // set up entry point
   entry: {
     // (multiple entry points are possible)
@@ -15,7 +15,7 @@ module.exports = {
   },
   // set up output folder
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     // [name] will evaluate to key name in 'entry'
     // [contenthash] creates unique hash code
     filename: '[name].[contenthash].js',
@@ -29,21 +29,27 @@ module.exports = {
   // set up development server
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.resolve(__dirname, './dist'),
+      publicPath: '/',
     },
     port: 8080,
-    proxy: [ //redirects requests to host 3000
-      {
-        context: ['/user'], //more might be needed to be added later
-        target: 'http://localhost:3000'
-      },
-    ],
-    
+    // proxy: [ //redirects requests to host 3000
+    //   {
+    //     context: ['/signup'], //more might be needed to be added later
+    //     target: 'http://localhost:3000'
+    //   },
+    // ],
+    // proxy: {
+    //   '/signup': 'http://localhost:3000',
+
+    // },
+
     open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
   },
+
   // LOADERS
   module: {
     rules: [
@@ -79,9 +85,9 @@ module.exports = {
   // set up plugins
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'untitled',
+      title: 'randomTitle',
       filename: 'index.html',
-      template: 'src/template.html',
+      template: './src/index.html',
     }),
     new webpack.DefinePlugin({
       'process.env.REACT_APP_API_KEY': JSON.stringify(process.env.REACT_APP_API_KEY),

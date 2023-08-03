@@ -15,21 +15,22 @@ const userController = {
       pw: req.body.pw
     };
 
-    const userSignupQuery = `INSERT INTO user_information (firstName, lastName, email, pw)
+    const userSignupQuery = `INSERT INTO user_information (first_name, last_name, email, password)
     VALUES ('${user.firstName}', '${user.lastName}', '${user.email}', '${user.pw}')`;
+
+    console.log(userSignupQuery, 'dsfsdfdsafsd')
 
     db.query(userSignupQuery)
       .then(() => {
-        console.log(created)
+        // console.log(created)
         res.locals.successLoginData = {
           isSuccessful: true,
-          email: email,
+          email: user.email,
         };
         return next();
       })
       .catch((err) => {
         console.error(err, 'err with adding new user to db');
-
         return next({
           log: `userController.authenticatesSignup failed to create new user, ${err.message}.`,
           status: 500,

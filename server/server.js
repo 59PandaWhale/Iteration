@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,7 @@ const userController = require('./userController.js');
 // enable cors + parse json
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
 // GET route: 'read' queries to restaurants table
 // app.get('/restaurants', controller.getRestaurants, (req, res) =>
@@ -34,7 +36,7 @@ app.post('/reviews', controller.submitReview, (req, res) =>
 app.post('/signup', userController.authenticateSignup, (req, res) => {
   console.log(res);
   res.status(201)})
-  // res.status(201).json(res.locals.successLoginData)});
+  // res.status(201).json(res.locals.successLoginData)}); 
 
 
 // POST route: login user
