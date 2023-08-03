@@ -119,6 +119,11 @@ export default function Login() {
             >
               Sign-up
             </Button>
+            <Grid item>
+                  <Link href="/signup" variant="body2" sx={{color: 'black', fontWeight: "bold"}}>
+                    {"Sign Up"}
+                  </Link>
+            </Grid>
           </Box>
         </Box>
       </Container>
