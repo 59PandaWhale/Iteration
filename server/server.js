@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors'); //might be optional?
-const app = express();
+const cors = require('cors');
 
+const app = express();
 const PORT = 3000;
 
 // import controller file
@@ -12,11 +12,10 @@ const userController = require('./userController.js');
 app.use(cors());
 app.use(express.json());
 
-
 // GET route: 'read' queries to restaurants table
 // app.get('/restaurants', controller.getRestaurants, (req, res) =>
 //   res.status(200).json(res.locals.restaurants)
-// ); 
+// );
 
 // //TODO: What does this do?
 // app.post('/restaurants', controller.getRestaurants, (req, res) =>
@@ -61,4 +60,7 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server is running on localhost:${PORT}...`);
 });
-//-----> GENERAL USE ROUTES END
+
+// module.exports = app.listen(PORT, () =>
+//   console.log(`Listening on port ${port}`)
+// );

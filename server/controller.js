@@ -3,9 +3,9 @@ const format = require('pg-format');
 
 const controller = {
   getReviews: (req, res, next) => {
-    const selectedRestaurantId = req.;
+    // const selectedRestaurantId = req.;
     const getReviewsQuery = `SELECT * FROM reviews`; //needs to be the specific requested restaurant
-  }
+  },
   // getRestaurants: async (req, res, next) => {
   //   try {
   //     let query = `SELECT * FROM restaurants`;
