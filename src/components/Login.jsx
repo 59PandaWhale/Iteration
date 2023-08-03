@@ -30,6 +30,8 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,26 +43,22 @@ export default function Login() {
     //if( data.get('email') || data.get('password') ||))
 
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('http://localhost:3000/login', {
        method: 'POST',
        headers: {
         'Content-Type': 'application/json'
        },
        body: JSON.stringify(body)
       })
-      const data = await response.json()
-      // get res.locals authetintication and useNavigate to approriate url path
-
+      const data = await response.json();
+      if (!data.isSuccessful) {
+        alert('You entered the wrong username or password. Please try again');
+      } else {
+        navigate('/');
+      }
+    } catch (err) {
+      console.log('error logging in: ', err);
     }
-    catch {
-
-    }
-
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (

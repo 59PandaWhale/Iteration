@@ -21,11 +21,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
+
 export default function SignUp() {
+    const navigate = useNavigate(); //instantiated just now
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // const SALT_WORK_FACTOR = 10;
+
     const firstName = data.get('firstName')
     const lastName = data.get('lastName')
     const email = data.get('email')
@@ -46,7 +49,7 @@ export default function SignUp() {
         body: JSON.stringify(body)
       };
 
-    fetch('/signup', requestOptions)
+    fetch('http://localhost:3000/signup', requestOptions)
       .then(response => response.json())
       .then((data) => {
         // If successful, store session, username and go to home
@@ -188,4 +191,4 @@ export default function SignUp() {
 //   );
 // };
 
-// export default Signup;
+// export default SignUp;
