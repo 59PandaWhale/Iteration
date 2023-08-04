@@ -44,15 +44,18 @@ export default function Login() {
 
     try {
       const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      });
-      const data = await response.json();
-      // get res.locals authetintication and useNavigate to approriate url path
-      if (data.isSuccessful) navigate('/');
+       method: 'POST',
+       headers: {
+        'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(body)
+      })
+       const data = await response.json();
+      if (!data.isSuccessful) {
+        alert('You entered the wrong username or password. Please try again');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       console.log('error logging in: ', err);
     }

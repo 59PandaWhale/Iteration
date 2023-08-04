@@ -10,8 +10,16 @@ POST http://localhost:3000/restaurants
 
 // POST route: 'create' entries to insert into reviews table
 POST http://localhost:3000/reviews
+content-type: application/json
 
-
+{
+  "restName": "Jaime's Overly-Friendly Pork Shack",
+  "staffAtt": "inappropriate",
+  "service": 2,
+  "review": "The food is great, but the owner, Jaime, too interested in asking if we knew a strapping young man who works at costco tire center becasue he got a whiff of his hair once and fell in love. ",
+  "recommend": "yes",
+  "bathroom": "gritty"
+}
 
 ###
 
