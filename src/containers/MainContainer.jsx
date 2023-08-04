@@ -24,7 +24,6 @@ function MainContainer() {
         <h1>(rec(commend), res(taurants), next)</h1>
         <RestaurantQuery />
         <RestaurantDisplay />
-        <ReviewContainer />
       </div>
       {/* //write a conditional render onclick */}
       {isCardButtonClicked && <div className='rightDiv'><RestaurantProfile /></div>}
